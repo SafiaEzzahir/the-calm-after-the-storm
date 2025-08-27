@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ua83g46frb00"]
+
+[ext_resource type="Texture2D" uid="uid://cdh5rsspxxbyl" path="res://images/tree.png" id="1_ovbbf"]
+
+[node name="forest_tree" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture_filter = 1
+texture = ExtResource("1_ovbbf")

@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var speed = 80
 
+signal moved
+
 var left := false
 var right := false
 var up := false

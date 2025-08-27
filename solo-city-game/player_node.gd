@@ -1,13 +1,17 @@
 extends Node2D
 
 var rocks = 0
+var wood = 0
 
-func _on_item_collider_body_entered(body: Node2D) -> void:
-	if body is TileMapLayer:
-		print($CharacterBody2D.position)
-		body.set_cell($CharacterBody2D.position, 0, Vector2i(1, 3))
-
+signal rocks_and_wood
 
 func _on_rock_collected() -> void:
 	rocks += 1
-	$CharacterBody2D/Label.text = str(rocks)
+	$CharacterBody2D/Control/RockLabel.text = str(rocks)
+
+func _on_branch_collected():
+	wood += 3
+	$CharacterBody2D/Control/WoodLabel.text = str(wood)
+
+func _on_campfire_activated():
+	rocks_and_wood.emit(rocks, wood)
