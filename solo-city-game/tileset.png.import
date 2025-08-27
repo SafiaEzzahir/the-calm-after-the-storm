@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctipciu552v2g"
-path="res://.godot/imported/tilesetfornowagain.png-dcc00b0da035765338e6f153753e4bdb.ctex"
+uid="uid://b4164i0nt0pte"
+path="res://.godot/imported/tileset.png-a39e944f25b35d62f55d4f98a36e2b5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesetfornowagain.png"
-dest_files=["res://.godot/imported/tilesetfornowagain.png-dcc00b0da035765338e6f153753e4bdb.ctex"]
+source_file="res://tileset.png"
+dest_files=["res://.godot/imported/tileset.png-a39e944f25b35d62f55d4f98a36e2b5e.ctex"]
 
 [params]
 
