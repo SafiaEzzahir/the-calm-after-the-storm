@@ -1,21 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://f2yih4o0q788"]
+[gd_scene load_steps=5 format=3 uid="uid://f2yih4o0q788"]
 
 [ext_resource type="Script" uid="uid://c4w2atr1qssqn" path="res://Scripts/menu.gd" id="1_m8x5s"]
+[ext_resource type="Texture2D" uid="uid://cj22w7nkktiuu" path="res://images/playbutton.png" id="2_nhyy2"]
+[ext_resource type="Texture2D" uid="uid://dg0squekvgbgg" path="res://images/howtoplaybutton.png" id="3_oglk7"]
+[ext_resource type="Texture2D" uid="uid://b5cuakhytwq2p" path="res://images/title.png" id="4_8bkqw"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_m8x5s")
 
 [node name="Play" type="Button" parent="."]
-offset_left = 317.0
-offset_top = 129.0
-offset_right = 820.0
-offset_bottom = 370.0
+texture_filter = 1
+offset_left = 463.0
+offset_top = 359.0
+offset_right = 685.0
+offset_bottom = 600.0
+icon = ExtResource("2_nhyy2")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="HowToPlay" type="Button" parent="."]
-offset_left = 324.0
-offset_top = 396.0
-offset_right = 820.0
-offset_bottom = 581.0
+texture_filter = 1
+offset_left = 1005.0
+offset_top = 14.0
+offset_right = 1139.0
+offset_bottom = 178.0
+icon = ExtResource("3_oglk7")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 284.0
+offset_top = 53.0
+offset_right = 849.0
+offset_bottom = 342.0
+texture = ExtResource("4_8bkqw")
+stretch_mode = 5
 
 [connection signal="button_down" from="Play" to="." method="_on_play_button_down"]
 [connection signal="button_down" from="HowToPlay" to="." method="_on_how_to_play_button_down"]

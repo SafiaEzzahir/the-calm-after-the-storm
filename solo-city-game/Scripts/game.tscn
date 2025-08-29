@@ -1,10 +1,53 @@
-[gd_scene load_steps=6 format=4 uid="uid://cpxarqfsvxtrj"]
+[gd_scene load_steps=11 format=4 uid="uid://cpxarqfsvxtrj"]
 
 [ext_resource type="Script" uid="uid://boj5jvjedxywr" path="res://Scripts/main.gd" id="1_0p57j"]
 [ext_resource type="TileSet" uid="uid://0c841bpai22s" path="res://gametileset.tres" id="2_4n3wb"]
 [ext_resource type="Script" uid="uid://dqh3kfac47iq1" path="res://Scripts/layer1.gd" id="3_vmat3"]
 [ext_resource type="PackedScene" uid="uid://g055au70w7at" path="res://player.tscn" id="4_f2efm"]
 [ext_resource type="PackedScene" uid="uid://chfp4abh4njw1" path="res://campfire.tscn" id="5_00o0t"]
+
+[sub_resource type="Gradient" id="Gradient_0p57j"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4n3wb"]
+gradient = SubResource("Gradient_0p57j")
+
+[sub_resource type="Animation" id="Animation_0p57j"]
+resource_name = "blink"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Blinker:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0793816, 0.112715, 0.212715),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1728, 648), Vector2(1728, 648), Vector2(1728, 324), Vector2(1728, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4n3wb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Blinker:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1728, 957)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vmat3"]
+_data = {
+&"RESET": SubResource("Animation_4n3wb"),
+&"blink": SubResource("Animation_0p57j")
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_0p57j")
@@ -24,19 +67,35 @@ tile_map_data = PackedByteArray("AADV/yYAAQAAAAMAAADV/yUAAQAAAAMAAADW/yUAAQAAAAM
 tile_set = ExtResource("2_4n3wb")
 script = ExtResource("3_vmat3")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="."]
-texture_filter = 1
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AADM/xgAAQADAAkAAADN/xgAAQABAAIAAADN/xcAAQABAAUAAADO/xcAAQADAAkAAADP/xcAAQADAAkAAADQ/xcAAQADAAkAAADR/xcAAQADAAkAAADS/xcAAQABAAIAAADM/xcAAQAKAAsAAADM/xYAAQAJAAwAAADN/xYAAQAIAAwAAADN/xUAAQALAAoAAADM/xUAAQAIAA0AAADL/xUAAQAEAAYAAADK/xUAAQAGAAYAAADK/xQAAQAIAAsAAADL/xQAAQAAAAMAAADL/xMAAQAAAAMAAADJ/xIAAQAAAAMAAADJ/xMAAQAAAAMAAADK/xMAAQAAAAMAAADJ/xQAAQAAAAMAAADO/xgAAQAEAAgAAADP/xgAAQAEAAgAAADQ/xgAAQAEAAgAAADR/xgAAQAEAAgAAADS/xgAAQAGAAgAAADT/xcAAQAHAAgAAAA=")
-tile_set = ExtResource("2_4n3wb")
-script = ExtResource("3_vmat3")
-
 [node name="Player" parent="." instance=ExtResource("4_f2efm")]
 z_index = 2
 position = Vector2(-924, 1961)
+
+[node name="Blinker" type="TextureRect" parent="Player"]
+offset_left = -847.0
+offset_top = -324.0
+offset_right = 881.0
+offset_bottom = 633.0
+texture = SubResource("GradientTexture1D_4n3wb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vmat3")
+}
 
 [node name="Campfire" parent="." instance=ExtResource("5_00o0t")]
 position = Vector2(14, 1505)
 
 [node name="Campfire2" parent="." instance=ExtResource("5_00o0t")]
 position = Vector2(-1310, 1562)
+
+[node name="campfire2" parent="." instance=ExtResource("5_00o0t")]
+position = Vector2(-1249, -882)
+
+[node name="campfire3" parent="." instance=ExtResource("5_00o0t")]
+position = Vector2(1226, 6)
+
+[node name="campfire" parent="." instance=ExtResource("5_00o0t")]
+position = Vector2(-959, 522)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
