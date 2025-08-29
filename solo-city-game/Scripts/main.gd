@@ -8,12 +8,9 @@ var branches = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Campfire.activated.connect($Player._on_campfire_activated)
-	$Player.rocks_and_wood.connect($Campfire._on_rocks_and_wood)
-	$Campfire.activated.connect($Player._on_campfire_activated)
-	$Player.rocks_and_wood.connect($Campfire._on_rocks_and_wood)
+	_connect_signals()
 	
-	for i in range(1, 11):
+	for i in range(1, 21):
 		var rock = rockscene.instantiate()
 		rocks.append(rock)
 		add_child(rock)
@@ -30,3 +27,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _connect_signals():
+	var house_items = [$Campfire, $Campfire2]
+	
+	for item in house_items:
+		item.activated.connect($Player._on_campfire_activated)
+		item.decrease_rocks.connect($Player._on_rocks_decrease)
+		item.decrease_wood.connect($Player._on_wood_decrease)
+		$Player.rocks_and_wood.connect(item._on_rocks_and_wood)

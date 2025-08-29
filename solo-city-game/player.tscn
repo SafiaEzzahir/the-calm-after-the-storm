@@ -84,6 +84,7 @@ offset_right = 273.0
 offset_bottom = -273.0
 
 [node name="RockLabel" type="Label" parent="CharacterBody2D/Control"]
+layout_mode = 0
 offset_left = 287.0
 offset_top = 7.0
 offset_right = 327.0

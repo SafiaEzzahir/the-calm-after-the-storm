@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="solo-city-game"
-run/main_scene="uid://bn1udd1nj0bwx"
+run/main_scene="uid://f2yih4o0q788"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

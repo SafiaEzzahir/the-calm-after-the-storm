@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://chfp4abh4njw1"]
+[gd_scene load_steps=7 format=3 uid="uid://chfp4abh4njw1"]
 
 [ext_resource type="Script" uid="uid://b8wnwca0fjlcb" path="res://campfire.gd" id="1_b5him"]
 [ext_resource type="Texture2D" uid="uid://cqfr8esw7cc84" path="res://images/campfire.png" id="1_oufq8"]
+[ext_resource type="AudioStream" uid="uid://dd2qeatcngl3v" path="res://images/firewhoosh-2.mp3" id="3_dk7h0"]
+[ext_resource type="AudioStream" uid="uid://dsmkyxu2x16jb" path="res://images/crackle.mp3" id="4_t2ea5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b5him"]
 radius = 116.017
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dk7h0"]
+radius = 33.0
 
 [node name="campfire" type="Node2D"]
 script = ExtResource("1_b5him")
@@ -20,5 +25,20 @@ hframes = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_b5him")
 
+[node name="Whoosh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dk7h0")
+volume_db = 7.0
+
+[node name="Crackler" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_t2ea5")
+max_distance = 800.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_dk7h0")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="finished" from="Whoosh" to="." method="_on_whoosh_finished"]
