@@ -1,0 +1,112 @@
+[gd_scene load_steps=7 format=3 uid="uid://brn22ge51drx3"]
+
+[ext_resource type="Script" uid="uid://cnp7dawp854u4" path="res://Scripts/prefirstcutscene.gd" id="1_mlnl7"]
+[ext_resource type="Texture2D" uid="uid://cope6q5egkjce" path="res://stormocean.jpg" id="2_y7s8i"]
+[ext_resource type="AudioStream" uid="uid://bhxke4277b3k7" path="res://oceansound3.mp3" id="3_2yg46"]
+
+[sub_resource type="Animation" id="Animation_y7s8i"]
+resource_name = "storm"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.766667, 2.2, 4.8, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1472, 994), Vector2(1472, 994), Vector2(1472, 994), Vector2(1472, 994), Vector2(1415, 921), Vector2(1152, 648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.766667, 0.7667, 1.4, 1.40003, 2.19997, 2.2, 3.13333, 3.96667, 4.8, 5.6333, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-170, -96), Vector2(-68, -80), Vector2(-158, -72), Vector2(-155.14, -72.254), Vector2(-158, -72), Vector2(-155.14, -72.25), Vector2(-80, -93), Vector2(-81.557, -92.57), Vector2(-221, -126), Vector2(-190, -88), Vector2(-115, -130), Vector2(-141, -167), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.766667, 1.4, 2.2, 3.13333, 3.96667, 4.8, 5.63333, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0593412, -0.0977384, 0.0558505, -0.13439, 0.101229, 0.0279253, -0.214676, 0.10821, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2yg46"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1273, 741)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-54, -27)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yg46"]
+_data = {
+&"RESET": SubResource("Animation_2yg46"),
+&"storm": SubResource("Animation_y7s8i")
+}
+
+[node name="prefirstcutscene" type="Node2D"]
+script = ExtResource("1_mlnl7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2yg46")
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -54.0
+offset_top = -27.0
+offset_right = 1219.0
+offset_bottom = 714.0
+pivot_offset = Vector2(636, 370)
+texture = ExtResource("2_y7s8i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2yg46")
+autoplay = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

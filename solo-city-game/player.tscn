@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://g055au70w7at"]
+[gd_scene load_steps=14 format=3 uid="uid://g055au70w7at"]
 
 [ext_resource type="Script" uid="uid://dj5qak7hxs8hb" path="res://player_node.gd" id="1_hqtel"]
 [ext_resource type="Script" uid="uid://df3r73ysjakm1" path="res://Scripts/player.gd" id="1_onrkg"]
@@ -6,6 +6,8 @@
 [ext_resource type="Theme" uid="uid://dxxklk43gg3vn" path="res://labels_theme.tres" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://d1gnm68k1v5b3" path="res://images/rockicon.png" id="4_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://d0pa6iafgceyv" path="res://images/woodicon.png" id="5_dw050"]
+[ext_resource type="AudioStream" uid="uid://ds3ll0clplp8a" path="res://rocksound.mp3" id="7_dw050"]
+[ext_resource type="AudioStream" uid="uid://x5urf83ywvw3" path="res://branch sound.mp3" id="8_b26j0"]
 
 [sub_resource type="Animation" id="Animation_hqtel"]
 length = 0.001
@@ -136,3 +138,10 @@ libraries = {
 [node name="TilemapCollisionCheck" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 25)
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="RockSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_dw050")
+volume_db = 1.2
+
+[node name="BranchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_b26j0")

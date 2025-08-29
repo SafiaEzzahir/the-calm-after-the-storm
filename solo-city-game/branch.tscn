@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8fe0y3v82hwy"]
+[gd_scene load_steps=5 format=3 uid="uid://c8fe0y3v82hwy"]
 
 [ext_resource type="PackedScene" uid="uid://c0lxnvuptydcb" path="res://rock.tscn" id="1_mcofe"]
 [ext_resource type="Texture2D" uid="uid://cdh5rsspxxbyl" path="res://images/tree.png" id="2_b0y4t"]
 [ext_resource type="Script" uid="uid://b26i3f758qx2w" path="res://branch.gd" id="2_qwyvj"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_qwyvj"]
+points = PackedVector2Array(23, 30, 32, 18, 7, -2, -6, -9, -14, -15, -23, -16, -14, -4, -4, 4)
 
 [node name="branch" instance=ExtResource("1_mcofe")]
 script = ExtResource("2_qwyvj")
@@ -12,5 +15,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("2_b0y4t")
 
 [node name="CollisionShape2D" parent="Area2D" index="1"]
+visible = false
 position = Vector2(1.5, 3)
 scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(4, 3)
+shape = SubResource("ConvexPolygonShape2D_qwyvj")

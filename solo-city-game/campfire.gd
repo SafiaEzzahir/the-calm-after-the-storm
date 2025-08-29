@@ -66,3 +66,4 @@ func _animate_and_sound():
 
 func _on_whoosh_finished() -> void:
 	whoosh_finished = true
+	get_parent().campfires_finished += 1

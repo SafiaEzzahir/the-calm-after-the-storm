@@ -8,10 +8,12 @@ signal rocks_and_wood
 func _on_rock_collected() -> void:
 	rocks += 2
 	$CharacterBody2D/Control/RockLabel.text = str(rocks)
+	$RockSound.play()
 
 func _on_branch_collected():
 	wood += 6
 	$CharacterBody2D/Control/WoodLabel.text = str(wood)
+	$BranchSound.play()
 
 func _on_campfire_activated():
 	rocks_and_wood.emit(rocks, wood)

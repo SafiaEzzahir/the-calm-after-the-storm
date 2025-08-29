@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://nhsg71imxxlr"]
+[gd_scene load_steps=10 format=3 uid="uid://nhsg71imxxlr"]
 
 [ext_resource type="Script" uid="uid://bmeqg1tw8od5g" path="res://Scripts/firstcutscene.gd" id="1_du8w0"]
 [ext_resource type="Texture2D" uid="uid://cope6q5egkjce" path="res://stormocean.jpg" id="2_du8w0"]
+[ext_resource type="AudioStream" uid="uid://d0c70w8d63hya" path="res://oceansound2.mp3" id="3_7nesn"]
+[ext_resource type="AudioStream" uid="uid://bdydfk6nedunh" path="res://oceansound4.mp3" id="4_214lp"]
 
 [sub_resource type="Gradient" id="Gradient_0orab"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -65,6 +67,13 @@ texture = SubResource("GradientTexture1D_du8w0")
 libraries = {
 &"": SubResource("AnimationLibrary_7nesn")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7nesn")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_214lp")
+volume_db = 8.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

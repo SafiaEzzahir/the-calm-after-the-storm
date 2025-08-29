@@ -4,12 +4,19 @@ var blinked = false
 var blinked2 = false
 var timer = 0.0
 var blinked_amount = 0
+var timer2 = 4.0
+
+func _ready() -> void:
+	$AudioStreamPlayer.play()
 
 func _process(delta: float) -> void:
 	if not blinked:
 		$AnimationPlayer.play("blink")
-	if blinked and not blinked2:
+	if blinked and not blinked2 and timer2 >= 4.0:
 		$AnimationPlayer.play_backwards("blink")
+	
+	if timer2 < 4.0:
+		timer2 += delta
 	
 	if blinked and blinked2:
 		timer += delta
@@ -17,9 +24,13 @@ func _process(delta: float) -> void:
 			blinked = false
 			blinked2 = false
 			timer = 0
-			
-	if blinked_amount == 2:
+	
+	if blinked_amount == 1:
+		timer2 = 0.0
+	elif blinked_amount == 2:
 		$Ocean.texture = load("res://images/ocean.jpeg")
+		if not $AudioStreamPlayer2.playing:
+			$AudioStreamPlayer2.play()
 	elif blinked_amount >= 4:
 		get_tree().change_scene_to_file("res://Scripts/game.tscn")
 
